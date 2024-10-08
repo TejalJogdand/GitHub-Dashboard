@@ -5,17 +5,14 @@ import seaborn as sns
 import zipfile
 import os
 
-# Function to load datasets
 @st.cache_data
 def load_data():
-    # Load GitHub dataset
     try:
         github_data = pd.read_csv('csv_files/github_dataset.csv')
     except FileNotFoundError:
         st.error("GitHub dataset file not found.")
         return None, None
 
-    # Load repository data from ZIP
     try:
         with zipfile.ZipFile('csv_files/repository_data.zip', 'r') as z:
             with z.open('repository_data.csv') as f:
@@ -32,9 +29,8 @@ def main():
     github_data, repository_data = load_data()
     
     if github_data is None or repository_data is None:
-        return  # Stop execution if data couldn't be loaded
+        return  
 
-    # Merge the datasets
     merged_data = pd.merge(github_data, repository_data, on='stars_count', how='inner')
 
     st.write("Columns in Merged Data:")
