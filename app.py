@@ -4,9 +4,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import zipfile
 
-github_data = pd.read_csv('E:/python_apps/streamlit_app/csv_files/github_dataset.csv')
+# github_data = pd.read_csv('E:/python_apps/streamlit_app/csv_files/github_dataset.csv')
+github_data = pd.read_csv('csv_files/github_dataset.csv')
 
-with zipfile.ZipFile('E:/python_apps/streamlit_app/csv_files/repository_data.zip', 'r') as z:
+with zipfile.ZipFile('csv_files/repository_data.zip', 'r') as z:
     with z.open('repository_data.csv') as f:
         repository_data = pd.read_csv(f)
 
